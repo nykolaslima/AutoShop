@@ -1,5 +1,10 @@
 AutoShop::Application.routes.draw do
-  resources :anuncios
+  resources :anuncios, except: ["destroy"] do
+		member do
+			get :delete
+			delete "delete" => "anuncios#destroy"
+		end
+	end
 
   get "loja/principal"
 

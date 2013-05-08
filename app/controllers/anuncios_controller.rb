@@ -22,4 +22,18 @@ class AnunciosController < ApplicationController
 
 		redirect_to root_url
 	end
+
+	def delete
+		@anuncio = Anuncio.find params[:id]
+	end
+
+	def destroy
+		anuncio = Anuncio.find params[:id]
+		
+		if anuncio.destroy
+			flash[:notice] = "O anúncio foi excluído."
+		end
+
+		redirect_to root_path
+	end
 end

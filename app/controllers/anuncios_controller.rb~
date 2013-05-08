@@ -19,5 +19,11 @@ class AnunciosController < ApplicationController
 		if anuncio.update_attributes params[:anuncio]
 			flash[:notice] = "Anúncio atualizado."
 		end
+
+		redirect_to root_url
+	end
+
+	def delete
+		@anuncio = Anuncio.find params[:id]
 	end
 end

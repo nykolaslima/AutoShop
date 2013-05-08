@@ -1,5 +1,9 @@
 AutoShop::Application.routes.draw do
-  resources :anuncios
+  resources :anuncios do
+		member do
+			get :delete
+		end
+	end
 
   get "loja/principal"
 

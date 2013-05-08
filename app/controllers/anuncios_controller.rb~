@@ -6,7 +6,5 @@ class AnunciosController < ApplicationController
 		if anuncio.save
 			flash[:notice] = "Seu anúncio foi cadastrado."
 		end
-
-		redirect_to root_url
 	end
 end

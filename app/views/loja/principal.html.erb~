@@ -21,12 +21,5 @@
 		<th>Descrição</th>
 	</tr>
 
-	<% @anuncios.each do |anuncio| %>
-		<tr>
-			<td><%= anuncio.modelo %></td>
-			<td><%= anuncio.ano %></td>
-			<td><%= anuncio.valor %></td>
-			<td><%= anuncio.descricao %></td>
-		</tr>
-	<% end %>
+	<%= render @anuncios %>
 </table>

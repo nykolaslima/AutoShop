@@ -3,6 +3,7 @@
 	<td><%= anuncio.ano %></td>
 	<td><%= anuncio.valor %></td>
 	<td><%= anuncio.descricao %></td>
+	<td><%= anuncio.anunciante.nome if anuncio.anunciante %></td>
 	<% if user_signed_in? %>
 		<td><%= link_to "Editar", edit_anuncio_path(anuncio) %></td>
 		<td>

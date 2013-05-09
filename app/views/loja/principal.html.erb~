@@ -1,7 +1,7 @@
 <p><%= notice %></p>
 <p><%= alert %></p>
 
-<%= render partial: "anuncios/form" %>
+<%= render partial: "anuncios/form" if user_signed_in? %>
 
 <table>
 	<tr>

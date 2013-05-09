@@ -3,8 +3,8 @@
 	<td><%= anuncio.ano %></td>
 	<td><%= anuncio.valor %></td>
 	<td><%= anuncio.descricao %></td>
-	<td><%= anuncio.anunciante.nome %></td>
-	<% if user_signed_in? %>
+	<td><%= anuncio.anunciante.nome if anuncio.anunciante %></td>
+	<% if user_signed_in? && anuncio.pertence_ao_anunciante? current_user %>
 		<td><%= link_to "Editar", edit_anuncio_path(anuncio) %></td>
 		<td>
 			<%= link_to "Excluir", delete_anuncio_path(anuncio), 

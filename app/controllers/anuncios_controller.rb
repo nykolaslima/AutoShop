@@ -1,6 +1,7 @@
 # encoding: utf-8
 class AnunciosController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :restrito_por_anunciante, except: :create
 
 	def create
 		anuncio = Anuncio.new params[:anuncio]
@@ -38,5 +39,15 @@ class AnunciosController < ApplicationController
 		end
 
 		redirect_to root_path
+	end
+
+private
+	def restrito_por_anunciante
+		anuncio = Anuncio.find(params[:id])
+
+		unless anuncio.pertence_ao_anunciante? current_user
+			flash[:alert] = "Este anúncio não é seu espertinho"
+			redirect_to root_path
+		end
 	end
 end

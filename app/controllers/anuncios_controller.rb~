@@ -53,8 +53,9 @@ class AnunciosController < ApplicationController
 private
 	def restrito_por_anunciante
 		anuncio = Anuncio.find(params[:id])
+		is_admin = current_user.role == "admin"
 
-		unless anuncio.pertence_ao_anunciante? current_user
+		unless is_admin || anuncio.pertence_ao_anunciante?(current_user)
 			flash[:alert] = "Este anúncio não é seu espertinho"
 			redirect_to root_path
 		end

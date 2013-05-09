@@ -43,6 +43,8 @@ class AnunciosController < ApplicationController
 
 	def approve
 		anuncio = Anuncio.find params[:id]
+		authorize! :approve, anuncio
+
 		if anuncio.update_attribute :aprovado, true
 			flash[:notice] = "O anúncio foi aprovado."
 		end

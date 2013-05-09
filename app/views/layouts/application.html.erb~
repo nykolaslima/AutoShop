@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<%= link_to "Sair", destroy_user_session_path, method: :delete %>
-
 <%= yield %>
 
 </body>

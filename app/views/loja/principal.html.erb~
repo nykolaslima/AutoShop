@@ -1,5 +1,7 @@
-<%= notice %>
+<p><%= notice %></p>
+<p><%= alert %></p>
 
+<%= render partial: "anuncios/form" %>
 
 <table>
 	<tr>

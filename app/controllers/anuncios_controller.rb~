@@ -1,5 +1,7 @@
 # encoding: utf-8
 class AnunciosController < ApplicationController
+	before_filter :authenticate_user!
+
 	def create
 		anuncio = Anuncio.new params[:anuncio]
 
@@ -25,5 +27,15 @@ class AnunciosController < ApplicationController
 
 	def delete
 		@anuncio = Anuncio.find params[:id]
+	end
+
+	def destroy
+		anuncio = Anuncio.find params[:id]
+		
+		if anuncio.destroy
+			flash[:notice] = "O anúncio foi excluído."
+		end
+
+		redirect_to root_path
 	end
 end

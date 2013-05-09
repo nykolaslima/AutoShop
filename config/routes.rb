@@ -1,4 +1,6 @@
 AutoShop::Application.routes.draw do
+  devise_for :users
+
   resources :anuncios, only: [:create, :edit, :update] do
 		member do
 			get :delete

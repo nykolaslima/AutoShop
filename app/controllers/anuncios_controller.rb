@@ -4,7 +4,7 @@ class AnunciosController < ApplicationController
 	before_filter :restrito_por_anunciante, except: :create
 
 	def create
-		anuncio = Anuncio.new params[:anuncio]
+		anuncio = Anuncio.new params_anuncio
 		anuncio.anunciante = current_user
 
 		if anuncio.save
@@ -16,11 +16,12 @@ class AnunciosController < ApplicationController
 
 	def edit
 		@anuncio = Anuncio.find params[:id]
+		@marcas = Marca.por_nome
 	end
 
 	def update
 		anuncio = Anuncio.find params[:id]
-		if anuncio.update_attributes params[:anuncio]
+		if anuncio.update_attributes params_anuncio
 			flash[:notice] = "Anúncio atualizado."
 		end
 
@@ -61,5 +62,16 @@ private
 			flash[:alert] = "Este anúncio não é seu espertinho"
 			redirect_to root_path
 		end
+	end
+
+	def params_anuncio
+		parameters = params[:anuncio]
+		if parameters[:marca_attributes] && !parameters[:marca_attributes][:nome].empty?
+			parameters.delete :marca_id
+		else
+			parameters.delete :marca_attributes
+		end
+
+		parameters
 	end
 end

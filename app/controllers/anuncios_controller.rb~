@@ -16,6 +16,7 @@ class AnunciosController < ApplicationController
 
 	def edit
 		@anuncio = Anuncio.find params[:id]
+		@marcas = Marca.por_nome
 	end
 
 	def update
@@ -43,6 +44,8 @@ class AnunciosController < ApplicationController
 
 	def approve
 		anuncio = Anuncio.find params[:id]
+		authorize! :approve, anuncio
+
 		if anuncio.update_attribute :aprovado, true
 			flash[:notice] = "O anúncio foi aprovado."
 		end
@@ -59,5 +62,16 @@ private
 			flash[:alert] = "Este anúncio não é seu espertinho"
 			redirect_to root_path
 		end
+	end
+
+	def params_anuncio
+		parameters = params[:anuncio]
+		if parameters[:marca_attributes] && !parameters[:marca_attributes][:nome].empty?
+			parameters.delete :marca_id
+		else
+			parameters.delete :marca_attributes
+		end
+
+		parameters
 	end
 end

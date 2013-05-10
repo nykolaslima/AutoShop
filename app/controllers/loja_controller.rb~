@@ -9,6 +9,6 @@ class LojaController < ApplicationController
 		end
 
 		@anuncio = Anuncio.new { |a| a.build_marca }
-		@marcas = Marca.por_nome
+		render_cadastro anuncio, "principal"
   end
 end

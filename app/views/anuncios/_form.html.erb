@@ -1,10 +1,12 @@
 <%= simple_form_for @anuncio || Anuncio.new do |f| %>
+	<%= f.error_notification %>
+
 	<div class="form-inputs">
 		<%= f.input :modelo %>
 		<%= f.simple_fields_for :marca do |m| %>
 			<%= m.input :nome, label: "Marca" %>
 		<% end %>
-		<%= select :anuncio, :marca_id, @marcas.map{ |m| [m.nome, m.id] },
+		<%= select :anuncio, :marca_id, marcas.map{ |m| [m.nome, m.id] },
 					prompt: "ou selecione a marca:" %>
 		<%= f.input :descricao %>
 		<%= f.input :ano %>

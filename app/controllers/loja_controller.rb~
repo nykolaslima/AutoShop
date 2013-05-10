@@ -5,7 +5,7 @@ class LojaController < ApplicationController
 		if is_admin
 			@anuncios = Anuncio.includes(:anunciante).all
 		else
-			@anuncios = Anuncio.aprovados
+			@anuncios = Anuncio.includes(:anunciante).aprovados
 		end
 
   end

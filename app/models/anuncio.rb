@@ -1,8 +1,10 @@
 class Anuncio < ActiveRecord::Base
-  attr_accessible :ano, :descricao, :modelo, :valor
+  attr_accessible :ano, :descricao, :modelo, :valor, :marca_attributes
 
 	belongs_to :anunciante, class_name: "User"
 	belongs_to :marca
+
+	accepts_nested_attributes_for :marca
 
 	def pertence_ao_anunciante?(anunciante)
 		self.anunciante == anunciante

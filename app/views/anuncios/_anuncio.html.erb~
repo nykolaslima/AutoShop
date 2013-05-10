@@ -12,4 +12,7 @@
 					data: { confirm: "Quer realmente excluir #{anuncio.modelo}?" } %>
 		</td>
 	<% end %>
+	<% unless anuncio.aprovado %>
+	<td><%= link_to "Aprovar", approve_anuncio_path(anuncio), method: :put %></td>
+	<% end %>
 </tr>

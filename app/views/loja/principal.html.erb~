@@ -9,6 +9,7 @@
 		<th>Ano</th>
 		<th>Valor</th>
 		<th>Descrição</th>
+		<th>Anunciante</th>
 	</tr>
 	<%= render @anuncios %>
 </table>

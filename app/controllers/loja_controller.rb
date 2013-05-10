@@ -8,5 +8,6 @@ class LojaController < ApplicationController
 			@anuncios = Anuncio.includes(:anunciante).aprovados
 		end
 
+		@anuncio = Anuncio.new { |a| a.build_marca }
   end
 end

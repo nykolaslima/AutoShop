@@ -2,6 +2,7 @@
 	<td><%= anuncio.modelo %></td>
 	<td><%= anuncio.ano %></td>
 	<td><%= anuncio.valor %></td>
+	<td><%= anuncio.marca && anuncio.marca.nome %></td>
 	<td><%= anuncio.descricao %></td>
 	<td><%= anuncio.anunciante.nome if anuncio.anunciante %></td>
 	<% if user_signed_in? && anuncio.pertence_ao_anunciante?(current_user) %>

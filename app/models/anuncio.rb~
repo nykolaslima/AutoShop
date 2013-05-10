@@ -6,4 +6,8 @@ class Anuncio < ActiveRecord::Base
 	def pertence_ao_anunciante?(anunciante)
 		self.anunciante == anunciante
 	end
+
+	def self.aprovados
+		where aprovado: true
+	end
 end

@@ -6,15 +6,21 @@ require "capybara/rspec"
 describe "Cadastro de anúncios" do
 	context "Preenchendo formulário corretamente" do
 		it "deveria criar e exibir o novo anúncio" do
-			admin = User.new email: "admin@example.org", password: "12345678", password_confirmation: "12345678"
-			admin.role = "admin"
-			admin.save!
+			autentica
+			visit "/"
 
-			visit "/users/sign_in"
-			fill_in "Email", with: "admin@example.org"
-			fill_in "Password", with: "12345678"
-			click_button "Sign in"
-			expect(page).to have_content "Signed in successfully"
+			fill_in "Modelo", with: "Fusca"
+			fill_in "Marca", with: "Volks"
+			fill_in "Descricao", with: "Carrinho maroto"
+			fill_in "Ano", with: "1972"
+			fill_in "Valor", with: "6500"
+			click_button "Create Anuncio"
+
+			expect(page).to have_content "Fusca"
+			expect(page).to have_content "Volks"
+			expect(page).to have_content "Carrinho maroto"
+			expect(page).to have_content "1972"
+			expect(page).to have_content "6500"
 		end
 	end
 end

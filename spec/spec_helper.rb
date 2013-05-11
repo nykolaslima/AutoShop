@@ -32,3 +32,14 @@ RSpec.configure do |config|
 
 	config.include Capybara::DSL
 end
+
+def autentica
+	admin = User.new email: "admin@example.org", password: "12345678", password_confirmation: "12345678"
+	admin.role = "admin"
+	admin.save!
+
+	visit "/users/sign_in"
+	fill_in "Email", with: "admin@example.org"
+	fill_in "Password", with: "12345678"
+	click_button "Sign in"
+end
